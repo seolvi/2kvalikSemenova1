@@ -26,6 +26,8 @@ namespace _2kvalikSemenova
         public MainWindow()
         {
             InitializeComponent();
+            App.MainFrame = MainFrame;
+            
             if (Current == null)
                 Current = this;
 
