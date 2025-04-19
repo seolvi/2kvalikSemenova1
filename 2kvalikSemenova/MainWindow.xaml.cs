@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2kvalikSemenova.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,35 @@ namespace _2kvalikSemenova
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow Current;
+
         public MainWindow()
         {
             InitializeComponent();
+            if (Current == null)
+                Current = this;
+
+            Navigate(new AuthPage());
+        }
+
+        public void Navigate(Page page)
+        {
+            MainFrame.NavigationService.Navigate(page);
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void AppExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Закрыть приложение?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                Application.Current.Shutdown();
         }
     }
 }
+
+        
+        
+
